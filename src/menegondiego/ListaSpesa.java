@@ -24,6 +24,11 @@ public class ListaSpesa {
 			throw Exception("La lista è piena");
 		}
 	}
+	public void eliminaProdotto(int pos){
+		for(int i=pos; i<100; i++){
+			lista[i]=lista[i++];
+		} numPr--;
+	}
 
     private Exception Exception(String string) {
 		System.out.println(string);

@@ -200,6 +200,16 @@ public class ListaSpesaGrafica {
 		Label lblTot = new Label(shell, SWT.NONE);
 		lblTot.setBounds(275, 200, 29, 15);
 		lblTot.setText("TOT");
+		
+		Button btnEliminaProdotto = new Button(shell, SWT.NONE);
+		btnEliminaProdotto.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ls.eliminaProdotto(0);
+			}
+		});
+		btnEliminaProdotto.setBounds(10, 227, 118, 25);
+		btnEliminaProdotto.setText("Elimina Prodotto");
 
 	}
 }
