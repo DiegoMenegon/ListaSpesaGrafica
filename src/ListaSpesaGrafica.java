@@ -30,10 +30,11 @@ public class ListaSpesaGrafica {
 	String cb;
 	String desc;
 	double prezzo;
-	boolean tf=true;
+	boolean tf=false;
 	String ma;
 	ListaSpesa ls = new ListaSpesa(tf);
 	private Text tot;
+	
 	
 	
 
@@ -117,6 +118,16 @@ public class ListaSpesaGrafica {
 		btnNonAlimentare.setText("Non alimentare");
 		
 		Button btnTesseraFedelt = new Button(shell, SWT.CHECK);
+		btnTesseraFedelt.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(tf==false){
+					tf=true;
+				}else{
+					tf=false;
+				}
+			}
+		});
 		btnTesseraFedelt.setBounds(10, 152, 103, 16);
 		btnTesseraFedelt.setText("Tessera Fedelt\u00E0");
 		
@@ -125,32 +136,36 @@ public class ListaSpesaGrafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if(alimentare==true){
+					
+					System.out.println("Alimentare");
+					System.out.println(tf);
 					cb=cod.getText();
 					desc=pro.getText();
 					prezzo=Double.valueOf(pre.getText());
 					Data d=new Data(Integer.valueOf(g.getText()),Integer.valueOf(m.getText()),Integer.valueOf(a.getText()));
 					p=new Alimentari(cb,desc,prezzo,d);
 					try {
-						ls.AggiungiProdotto(p);
+						ls.AggiungiProdotto(p,tf);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				}
-				
-				if(nalimentare==true){
+				}else{
+					System.out.println("Nonalimentare");
+					System.out.println(tf);
 					cb=cod.getText();
 					desc=pro.getText();
 					prezzo=Double.valueOf(pre.getText());
 					ma=mat.getText();
 					p1=new NonAlimentari(cb,desc,prezzo,ma);
 					try {
-						ls.AggiungiProdotto(p1);
+						ls.AggiungiProdotto(p1,tf);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
+				
 			}
 		});
 		btnAggiungiProdotto.setBounds(10, 195, 118, 25);
