@@ -13,7 +13,7 @@ public class ListaSpesa {
 		lista = new Prodotto[this.maxPr];
 	}
 	
-	public void AggiungiProdotto(Prodotto p) throws java.lang.Exception{
+	public void AggiungiProdotto(Prodotto p,boolean tf) throws java.lang.Exception{
 		if(numPr<maxPr){
 			if(tf){
 				p.scontaPrezzo();

@@ -8,8 +8,7 @@ public class ListaSpesaTest {
 		Alimentari p1= new Alimentari("111","pasta",5,d);
 		NonAlimentari p2= new NonAlimentari("112","fogli",2,"carta");
 		try {
-			ls.AggiungiProdotto(p1);
-			ls.AggiungiProdotto(p2);
+		
 		} catch (Exception e) {
 			
 		}

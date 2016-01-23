@@ -7,10 +7,19 @@ public class Data {
 	
 	private GregorianCalendar c;
 	
+	/**
+	 * Crea un oggetto data con la data corrente
+	 */
 	public Data(){
 		c = new GregorianCalendar();
 	}
 	
+	/**
+	 * Crea un oggetto data con la data impostata
+	 * @param g
+	 * @param m
+	 * @param a
+	 */
 	public Data(int g, int m, int a){
 		c = new GregorianCalendar(a,m-1,g);
 	}

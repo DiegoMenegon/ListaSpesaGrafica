@@ -1,8 +1,10 @@
 package menegondiego;
 
+import java.util.GregorianCalendar;
+
 public class Alimentari extends Prodotto {
 
-	Data ds;
+	Data ds=new Data();
 
 	public Alimentari(String cb, String desc, double pr, Data ds) {
 		super(cb, desc, pr);
@@ -14,11 +16,11 @@ public class Alimentari extends Prodotto {
 		return super.toString() + " ds= " + ds;
 	}
 
-	double scontaPrezzo(Data d) {
-		if (ds.getDifference(d) < 10) {
-			setPr(this.pr - ((this.pr / 100) * 20));
+	double scontaPrezzo() {
+		if (ds.getDifference(new Data()) < 10) {
+			super.setPr(getPr() * 80/100);
 		} else {
-			setPr(this.pr - ((this.pr / 100) * 5));
+			super.setPr(getPr() * 95/100);
 		}
 		return pr;
 	}

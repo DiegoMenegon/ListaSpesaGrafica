@@ -10,7 +10,7 @@ public class ProdottoTest {
 		System.out.println(p1.toString());
 		
 
-		p1.scontaPrezzo(da);
+		p1.scontaPrezzo();
 		System.out.println(p1.toString());
 		
 		
