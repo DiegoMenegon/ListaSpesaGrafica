@@ -13,7 +13,7 @@ public class Alimentari extends Prodotto {
 
 	@Override
 	public String toString() {
-		return super.toString() + " ds= " + ds;
+		return super.toString() + " " + ds;
 	}
 
 	double scontaPrezzo() {

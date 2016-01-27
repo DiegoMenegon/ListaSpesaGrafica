@@ -8,7 +8,7 @@ public class NonAlimentari extends Prodotto {
 	}
 	@Override
 	public String toString() {
-		return super.toString()+", m=" + m + "]";
+		return super.toString() + " " + m ;
 	}
 	
 	double scontaPrezzo (){

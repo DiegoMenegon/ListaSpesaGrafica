@@ -49,7 +49,7 @@ public class Prodotto {
 
 	@Override
 	public String toString() {
-		return "Prodotto [cb=" + cb + ", desc=" + desc + ", pr=" + pr + "]";
+		return cb + " " + desc + " €" + pr;
 	}
 	
 	double scontaPrezzo() {

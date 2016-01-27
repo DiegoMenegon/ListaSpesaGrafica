@@ -12,6 +12,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.events.TouchListener;
+import org.eclipse.swt.events.TouchEvent;
 
 public class ListaSpesaGrafica {
 
@@ -23,6 +26,7 @@ public class ListaSpesaGrafica {
 	private Text m;
 	private Text a;
 	private Text mat;
+	int n;
 	boolean nalimentare=false;
 	boolean alimentare = false;
 	Alimentari p;
@@ -71,7 +75,7 @@ public class ListaSpesaGrafica {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 300);
+		shell.setSize(702, 300);
 		shell.setText("SWT Application");
 		
 		cod = new Text(shell, SWT.BORDER);
@@ -131,6 +135,15 @@ public class ListaSpesaGrafica {
 		btnTesseraFedelt.setBounds(10, 152, 103, 16);
 		btnTesseraFedelt.setText("Tessera Fedelt\u00E0");
 		
+		List list = new List(shell, SWT.BORDER);
+		list.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				n=list.getSelectionIndex();
+			}
+		});
+		list.setBounds(405, 10, 271, 242);
+		
 		Button btnAggiungiProdotto = new Button(shell, SWT.NONE);
 		btnAggiungiProdotto.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -146,6 +159,7 @@ public class ListaSpesaGrafica {
 					p=new Alimentari(cb,desc,prezzo,d);
 					try {
 						ls.AggiungiProdotto(p,tf);
+						list.add(p.toString());
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -160,6 +174,7 @@ public class ListaSpesaGrafica {
 					p1=new NonAlimentari(cb,desc,prezzo,ma);
 					try {
 						ls.AggiungiProdotto(p1,tf);
+						list.add(p1.toString());
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -220,11 +235,14 @@ public class ListaSpesaGrafica {
 		btnEliminaProdotto.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ls.eliminaProdotto(0);
+				ls.eliminaProdotto(n);
+				list.remove(n);
 			}
 		});
 		btnEliminaProdotto.setBounds(10, 227, 118, 25);
 		btnEliminaProdotto.setText("Elimina Prodotto");
+		
+		
 
 	}
 }
