@@ -235,8 +235,13 @@ public class ListaSpesaGrafica {
 		btnEliminaProdotto.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ls.eliminaProdotto(n);
-				list.remove(n);
+				try{
+					ls.eliminaProdotto(n);
+					list.remove(n);
+				}catch(Exception c){
+					
+				}
+				
 			}
 		});
 		btnEliminaProdotto.setBounds(10, 227, 118, 25);
