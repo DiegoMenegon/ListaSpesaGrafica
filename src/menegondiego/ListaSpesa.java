@@ -1,5 +1,12 @@
 package menegondiego;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.List;
+
 public class ListaSpesa {
 	private Prodotto lista[];
 	private int numPr=0;
@@ -43,5 +50,24 @@ public class ListaSpesa {
     	}
     	System.out.println("Il prezzo è "+tot);
     	return tot;
+    }
+    
+    public void salvaScontrino(List l){
+    	int i=0;
+    	String message;
+    	//scrittura sul file
+    	BufferedWriter fWrite;
+    	try {
+    		fWrite=new BufferedWriter(new FileWriter("carrello.txt")); //, true per APPEND
+    		for(i=0;i<l.getItemCount();i++){
+    		message = l.getItem(i);
+    		fWrite.write(message);
+    		fWrite.newLine();
+    		}
+    		fWrite.close();
+    	} catch (IOException e1) {
+    		// TODO Auto-generated catch block
+    		e1.printStackTrace();
+    	}
     }
 }

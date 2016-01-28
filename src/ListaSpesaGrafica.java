@@ -38,6 +38,8 @@ public class ListaSpesaGrafica {
 	String ma;
 	ListaSpesa ls = new ListaSpesa(tf);
 	private Text tot;
+	int i;
+	int pr=0;
 	
 	
 	
@@ -160,6 +162,7 @@ public class ListaSpesaGrafica {
 					try {
 						ls.AggiungiProdotto(p,tf);
 						list.add(p.toString());
+						pr++;
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -175,6 +178,7 @@ public class ListaSpesaGrafica {
 					try {
 						ls.AggiungiProdotto(p1,tf);
 						list.add(p1.toString());
+						pr++;
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -246,6 +250,31 @@ public class ListaSpesaGrafica {
 		});
 		btnEliminaProdotto.setBounds(10, 227, 118, 25);
 		btnEliminaProdotto.setText("Elimina Prodotto");
+		
+		Button btnSalvaCarrello = new Button(shell, SWT.NONE);
+		btnSalvaCarrello.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+					ls.salvaScontrino(list);
+			}
+		});
+		btnSalvaCarrello.setBounds(167, 227, 84, 25);
+		btnSalvaCarrello.setText("Salva carrello");
+		
+		Button svuota = new Button(shell, SWT.NONE);
+		svuota.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				for(i=0;i<list.getSelectionIndex();i++){
+					ls.eliminaProdotto(i);
+					
+				}
+				list.removeAll();
+				
+			}
+		});
+		svuota.setBounds(166, 164, 85, 25);
+		svuota.setText("Svuota carrello");
 		
 		
 
