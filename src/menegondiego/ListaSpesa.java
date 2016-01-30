@@ -1,11 +1,16 @@
 package menegondiego;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Shell;
 
 public class ListaSpesa {
 	private Prodotto lista[];
@@ -67,6 +72,44 @@ public class ListaSpesa {
     		fWrite.close();
     	} catch (IOException e1) {
     		// TODO Auto-generated catch block
+    		e1.printStackTrace();
+    	}
+    }
+    
+    public void carica(List l,Shell shell){
+    	Alimentari p;
+    	NonAlimentari p1;
+    	BufferedReader lettore;
+    	String riga = "";
+    	String testo[];
+    	String data[];
+    	try {
+    		lettore = new BufferedReader(new FileReader("carrello.txt"));
+    		riga = lettore.readLine();
+    		 while (riga != null) {
+    			
+    			testo = riga.split(" ");
+    			if(testo[3].contains("/")){
+    				data=testo[3].split("/");
+    				Data d=new Data(Integer.valueOf(data[0]),Integer.valueOf(data[1]),Integer.valueOf(data[2]));
+    				p=new Alimentari(testo[0],testo[1],Double.valueOf(testo[2]),d);
+    				lista[numPr]=p;
+        			numPr++;
+        			l.add(p.toString());
+    			}else{
+    				p1=new NonAlimentari(testo[0],testo[1],Double.valueOf(testo[2]),testo[3]);
+    				lista[numPr]=p1;
+        			numPr++;
+        			l.add(p1.toString());
+    			}
+    			
+    			riga = lettore.readLine();
+    			
+    		}
+    		
+    	} catch (IOException e1) {
+    		// TODO Auto-generated catch block
+    		JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
     		e1.printStackTrace();
     	}
     }
