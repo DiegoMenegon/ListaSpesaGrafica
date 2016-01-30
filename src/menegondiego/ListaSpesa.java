@@ -39,7 +39,10 @@ public class ListaSpesa {
 	public void eliminaProdotto(int pos){
 		for(int i=pos; i<100; i++){
 			lista[i]=lista[i++];
-		} numPr--;
+		} 
+		if(numPr>0){
+			numPr--;
+		}
 	}
 
     private Exception Exception(String string) {

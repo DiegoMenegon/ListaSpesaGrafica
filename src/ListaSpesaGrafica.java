@@ -165,13 +165,9 @@ public class ListaSpesaGrafica {
 		btnAggiungiProdotto.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(alimentare==true&&c==true){
-					
+				if(alimentare==true){
 					System.out.println("Alimentare");
 					System.out.println(tf);
-				
-					
-					
 					try {
 						cb=cod.getText();
 						desc=pro.getText();
@@ -187,11 +183,9 @@ public class ListaSpesaGrafica {
 						e1.printStackTrace();
 					}
 				}else{
-					if(c==true){
+					if(true){
 						System.out.println("Nonalimentare");
 						System.out.println(tf);
-						
-						
 						try {
 							cb=cod.getText();
 							desc=pro.getText();
@@ -280,7 +274,9 @@ public class ListaSpesaGrafica {
 		btnSalvaCarrello.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+					
 					ls.salvaScontrino(list);
+					JOptionPane.showMessageDialog(null,"Hai salvato la tua lista","Salvataggio effettuato",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnSalvaCarrello.setBounds(167, 227, 84, 25);
@@ -303,6 +299,8 @@ public class ListaSpesaGrafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ls.carica(list,shell);
+				JOptionPane.showMessageDialog(null,"Caricamento effettuato correttamente","Caricamento effettuato",JOptionPane.INFORMATION_MESSAGE);
+				tot.setText(""+ls.CalcolaSpesa());
 			}
 		});
 		btnCaricaCarrello.setBounds(166, 195, 85, 25);
