@@ -109,10 +109,11 @@ public class ListaSpesa {
     			riga = lettore.readLine();
     			
     		}
+    		 JOptionPane.showMessageDialog(null,"Caricamento effettuato correttamente","Caricamento effettuato",JOptionPane.INFORMATION_MESSAGE);
     		
     	} catch (IOException e1) {
     		// TODO Auto-generated catch block
-    		JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
+    		JOptionPane.showMessageDialog(null,"File non trovato","Errore",JOptionPane.ERROR_MESSAGE);
     		e1.printStackTrace();
     	}
     }

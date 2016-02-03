@@ -18,7 +18,9 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.events.TouchListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.events.TouchEvent;
+import java.awt.Graphics;
 
 public class ListaSpesaGrafica {
 
@@ -91,7 +93,9 @@ public class ListaSpesaGrafica {
 	protected void createContents() {
 		shell = new Shell();
 		shell.setSize(702, 332);
-		shell.setText("SWT Application");
+		shell.setText("ListaSpesApp");
+		Color green = new Color(null,218,253,218);
+		shell.setBackground(green);
 		
 		cod = new Text(shell, SWT.BORDER);
 		cod.setBounds(10, 36, 100, 21);
@@ -99,6 +103,7 @@ public class ListaSpesaGrafica {
 		Label lblCodiceProdotto = new Label(shell, SWT.NONE);
 		lblCodiceProdotto.setBounds(10, 15, 100, 15);
 		lblCodiceProdotto.setText("Codice prodotto");
+		lblCodiceProdotto.setBackground(green);
 		
 		pro = new Text(shell, SWT.BORDER);
 		pro.setBounds(166, 36, 76, 21);
@@ -106,6 +111,7 @@ public class ListaSpesaGrafica {
 		Label lblProdotto = new Label(shell, SWT.NONE);
 		lblProdotto.setBounds(166, 15, 55, 15);
 		lblProdotto.setText("Prodotto");
+		lblProdotto.setBackground(green);
 		
 		pre = new Text(shell, SWT.BORDER);
 		pre.setBounds(310, 36, 76, 21);
@@ -113,8 +119,10 @@ public class ListaSpesaGrafica {
 		Label lblPrezzo = new Label(shell, SWT.NONE);
 		lblPrezzo.setBounds(309, 15, 55, 15);
 		lblPrezzo.setText("Prezzo");
+		lblPrezzo.setBackground(green);
 		
 		Button btnAlimentare = new Button(shell, SWT.RADIO);
+		btnAlimentare.setBackground(green);
 		btnAlimentare.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -127,6 +135,7 @@ public class ListaSpesaGrafica {
 		btnAlimentare.setText("Alimentare");
 		
 		Button btnNonAlimentare = new Button(shell, SWT.RADIO);
+		btnNonAlimentare.setBackground(green);
 		btnNonAlimentare.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -139,6 +148,7 @@ public class ListaSpesaGrafica {
 		btnNonAlimentare.setText("Non alimentare");
 		
 		Button btnTesseraFedelt = new Button(shell, SWT.CHECK);
+		btnTesseraFedelt.setBackground(green);
 		btnTesseraFedelt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -191,10 +201,15 @@ public class ListaSpesaGrafica {
 							desc=pro.getText();
 							prezzo=Double.valueOf(pre.getText());
 							ma=mat.getText();
-							p1=new NonAlimentari(cb,desc,prezzo,ma);
-							ls.AggiungiProdotto(p1,tf);
-							list.add(p1.toString());
-							pr++;
+							System.out.println(ma);
+							if(ma.length()>0){
+								p1=new NonAlimentari(cb,desc,prezzo,ma);
+								ls.AggiungiProdotto(p1,tf);
+								list.add(p1.toString());
+								pr++;
+							}else{
+								JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
+							}
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
@@ -210,25 +225,28 @@ public class ListaSpesaGrafica {
 		btnAggiungiProdotto.setText("Aggiungi Prodotto");
 		
 		g = new Text(shell, SWT.BORDER);
-		g.setBounds(166, 87, 29, 21);
+		g.setBounds(163, 85, 23, 21);
 		
 		m = new Text(shell, SWT.BORDER);
-		m.setBounds(222, 87, 29, 21);
+		m.setBounds(227, 85, 24, 21);
 		
 		a = new Text(shell, SWT.BORDER);
-		a.setBounds(293, 87, 49, 21);
+		a.setBounds(293, 87, 35, 21);
 		
 		Label lblG = new Label(shell, SWT.NONE);
-		lblG.setBounds(144, 88, 16, 15);
+		lblG.setBounds(149, 88, 8, 15);
 		lblG.setText("G");
+		lblG.setBackground(green);
 		
 		Label lblM = new Label(shell, SWT.NONE);
 		lblM.setText("M");
 		lblM.setBounds(205, 88, 16, 15);
+		lblM.setBackground(green);
 		
 		Label lblA = new Label(shell, SWT.NONE);
 		lblA.setText("A");
 		lblA.setBounds(275, 88, 16, 15);
+		lblA.setBackground(green);
 		
 		mat = new Text(shell, SWT.BORDER);
 		mat.setBounds(205, 114, 76, 21);
@@ -236,6 +254,7 @@ public class ListaSpesaGrafica {
 		Label lblMateriale = new Label(shell, SWT.NONE);
 		lblMateriale.setBounds(144, 117, 55, 15);
 		lblMateriale.setText("Materiale");
+		lblMateriale.setBackground(green);
 		
 		Button btnCalcolaTotale = new Button(shell, SWT.NONE);
 		btnCalcolaTotale.addSelectionListener(new SelectionAdapter() {
@@ -253,6 +272,7 @@ public class ListaSpesaGrafica {
 		Label lblTot = new Label(shell, SWT.NONE);
 		lblTot.setBounds(275, 263, 29, 15);
 		lblTot.setText("TOT");
+		lblTot.setBackground(green);
 		
 		Button btnEliminaProdotto = new Button(shell, SWT.NONE);
 		btnEliminaProdotto.addSelectionListener(new SelectionAdapter() {
@@ -298,8 +318,9 @@ public class ListaSpesaGrafica {
 		btnCaricaCarrello.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				list.removeAll();
+				ls=new ListaSpesa(tf);
 				ls.carica(list,shell);
-				JOptionPane.showMessageDialog(null,"Caricamento effettuato correttamente","Caricamento effettuato",JOptionPane.INFORMATION_MESSAGE);
 				tot.setText(""+ls.CalcolaSpesa());
 			}
 		});
