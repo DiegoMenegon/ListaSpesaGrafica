@@ -48,8 +48,6 @@ public class ListaSpesaGrafica {
 	int pr=0;
 	boolean c=false;
 	
-	
-	
 
 	/**
 	 * Launch the application.
@@ -93,7 +91,7 @@ public class ListaSpesaGrafica {
 	protected void createContents() {
 		shell = new Shell();
 		shell.setSize(702, 332);
-		shell.setText("ListaSpesApp");
+		shell.setText("SpesApp");
 		Color green = new Color(null,218,253,218);
 		shell.setBackground(green);
 		
@@ -201,15 +199,20 @@ public class ListaSpesaGrafica {
 							desc=pro.getText();
 							prezzo=Double.valueOf(pre.getText());
 							ma=mat.getText();
-							System.out.println(ma);
-							if(ma.length()>0){
-								p1=new NonAlimentari(cb,desc,prezzo,ma);
-								ls.AggiungiProdotto(p1,tf);
-								list.add(p1.toString());
-								pr++;
-							}else{
+							if(ma.contains("1")||ma.contains("2")||ma.contains("3")||ma.contains("4")||ma.contains("5")||ma.contains("6")||ma.contains("7")||ma.contains("8")||ma.contains("9")||ma.contains("0")){
 								JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
+							}else{
+								System.out.println(ma);
+								if(ma.length()>0){
+									p1=new NonAlimentari(cb,desc,prezzo,ma);
+									ls.AggiungiProdotto(p1,tf);
+									list.add(p1.toString());
+									pr++;
+								}else{
+									JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
+								}
 							}
+							
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
@@ -256,18 +259,20 @@ public class ListaSpesaGrafica {
 		lblMateriale.setText("Materiale");
 		lblMateriale.setBackground(green);
 		
+		Label tot = new Label(shell, SWT.NONE);
+		tot.setBounds(310, 263, 76, 22);
+		tot.setText("0.0");
+		tot.setBackground(green);
+		
 		Button btnCalcolaTotale = new Button(shell, SWT.NONE);
 		btnCalcolaTotale.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				tot.setText(""+ls.CalcolaSpesa());
+				tot.setText(" " +ls.CalcolaSpesa());
 			}
 		});
 		btnCalcolaTotale.setBounds(10, 258, 118, 25);
 		btnCalcolaTotale.setText("Calcola totale");
-		
-		tot = new Text(shell, SWT.BORDER);
-		tot.setBounds(310, 260, 76, 21);
 		
 		Label lblTot = new Label(shell, SWT.NONE);
 		lblTot.setBounds(275, 263, 29, 15);
