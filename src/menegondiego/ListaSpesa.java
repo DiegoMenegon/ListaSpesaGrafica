@@ -37,7 +37,7 @@ public class ListaSpesa {
 		}
 	}
 	public void eliminaProdotto(int pos){
-		for(int i=pos; i<100; i++){
+		for(int i=pos; i<numPr; i++){
 			lista[i]=lista[i++];
 		} 
 		if(numPr>0){

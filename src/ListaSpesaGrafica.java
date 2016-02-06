@@ -32,7 +32,7 @@ public class ListaSpesaGrafica {
 	private Text m;
 	private Text a;
 	private Text mat;
-	int n;
+	int n=9999999;
 	boolean nalimentare=false;
 	boolean alimentare = false;
 	Alimentari p;
@@ -182,16 +182,15 @@ public class ListaSpesaGrafica {
 		btnNonAlimentare.setBounds(10, 116, 100, 16);
 		btnNonAlimentare.setText("Non alimentare");
 		
-		int dialogButton = JOptionPane.YES_NO_OPTION;
-        JOptionPane.showConfirmDialog (null, "Hai la tessera?","ATTENZIONE", dialogButton);
-        if(dialogButton == JOptionPane.YES_OPTION) {
-        	tf=true;
+		int dialogButton = JOptionPane.showConfirmDialog (null, "Hai la tessera?","ATTENZIONE", JOptionPane.YES_NO_OPTION); 
         if(dialogButton == JOptionPane.NO_OPTION) {
-              tf=false;
-            }
-          }
-		
-		
+        	System.out.println(dialogButton);
+        	tf=false;
+        }else{
+        	System.out.println(dialogButton);
+        	tf=true;
+        }
+        
 		List list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -220,6 +219,7 @@ public class ListaSpesaGrafica {
 							ls.AggiungiProdotto(p,tf);
 							list.add(p.toString());
 							pr++;
+							tot.setText(""+ls.CalcolaSpesa());
 						}
 						
 					} catch (Exception e1) {
@@ -304,8 +304,17 @@ public class ListaSpesaGrafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try{
-					ls.eliminaProdotto(n);
-					list.remove(n);
+					if(n<=pr){
+						System.out.println("sel");
+						ls.eliminaProdotto(n);
+						list.remove(n);
+						n=n+99999;
+					}else{
+						System.out.println("ult");
+						list.remove(pr-1);
+						ls.eliminaProdotto(pr-1);
+					}
+					pr--;
 				}catch(Exception c){
 					JOptionPane.showMessageDialog(null,"Lista vuota","Errore",JOptionPane.ERROR_MESSAGE);
 				}
