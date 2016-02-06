@@ -160,7 +160,7 @@ public class ListaSpesaGrafica {
 		btnTesseraFedelt.setBounds(10, 152, 103, 16);
 		btnTesseraFedelt.setText("Tessera Fedelt\u00E0");
 		
-		List list = new List(shell, SWT.BORDER);
+		List list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -177,21 +177,28 @@ public class ListaSpesaGrafica {
 					System.out.println("Alimentare");
 					System.out.println(tf);
 					try {
-						cb=cod.getText();
-						desc=pro.getText();
-						prezzo=Double.valueOf(pre.getText());
-						Data d=new Data(Integer.valueOf(g.getText()),Integer.valueOf(m.getText()),Integer.valueOf(a.getText()));
-						p=new Alimentari(cb,desc,prezzo,d);
-						ls.AggiungiProdotto(p,tf);
-						list.add(p.toString());
-						pr++;
+						if(cod.getText().contains(" ")||pro.getText().contains(" ")){
+							JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
+						}else{
+							cb=cod.getText();
+							desc=pro.getText();
+							prezzo=Double.valueOf(pre.getText());
+							Data d=new Data(Integer.valueOf(g.getText()),Integer.valueOf(m.getText()),Integer.valueOf(a.getText()));
+							p=new Alimentari(cb,desc,prezzo,d);
+							ls.AggiungiProdotto(p,tf);
+							list.add(p.toString());
+							pr++;
+						}
+						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 				}else{
-					if(true){
+					if(cod.getText().contains(" ")||pro.getText().contains(" ")||mat.getText().contains(" ")){
+						JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
+					}else{
 						System.out.println("Nonalimentare");
 						System.out.println(tf);
 						try {
@@ -218,10 +225,8 @@ public class ListaSpesaGrafica {
 							JOptionPane.showMessageDialog(null,"Dati non validi","Errore",JOptionPane.ERROR_MESSAGE);
 							e1.printStackTrace();
 						}
-					}
-					
+					}    	
 				}
-				
 			}
 		});
 		btnAggiungiProdotto.setBounds(10, 195, 118, 25);

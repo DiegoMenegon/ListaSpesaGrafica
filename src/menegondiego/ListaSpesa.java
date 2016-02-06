@@ -57,7 +57,8 @@ public class ListaSpesa {
     		tot=tot+this.lista[i].getPr();
     	}
     	System.out.println("Il prezzo è "+tot);
-    	return tot;
+    	tot=Math.floor(tot*100);
+    	return tot/100;
     }
     
     public void salvaScontrino(List l){
