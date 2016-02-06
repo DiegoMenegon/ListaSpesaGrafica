@@ -119,6 +119,26 @@ public class ListaSpesaGrafica {
 		lblPrezzo.setText("Prezzo");
 		lblPrezzo.setBackground(green);
 		
+		Label lblG = new Label(shell, SWT.NONE);
+		lblG.setBounds(149, 88, 8, 15);
+		lblG.setText("G");
+		lblG.setBackground(green);
+		
+		Label lblM = new Label(shell, SWT.NONE);
+		lblM.setText("M");
+		lblM.setBounds(205, 88, 16, 15);
+		lblM.setBackground(green);
+		
+		Label lblA = new Label(shell, SWT.NONE);
+		lblA.setText("A");
+		lblA.setBounds(275, 88, 16, 15);
+		lblA.setBackground(green);
+		
+		Label lblMateriale = new Label(shell, SWT.NONE);
+		lblMateriale.setBounds(144, 117, 55, 15);
+		lblMateriale.setText("Materiale");
+		lblMateriale.setBackground(green);
+		
 		Button btnAlimentare = new Button(shell, SWT.RADIO);
 		btnAlimentare.setBackground(green);
 		btnAlimentare.addSelectionListener(new SelectionAdapter() {
@@ -126,7 +146,16 @@ public class ListaSpesaGrafica {
 			public void widgetSelected(SelectionEvent e) {
 				 nalimentare=false;
 				 alimentare = true;
-				 c=true;
+				 mat.setEnabled(false);
+				 g.setEnabled(true);
+				 m.setEnabled(true);
+				 a.setEnabled(true);
+				 lblA.setEnabled(true);
+				 lblG.setEnabled(true);
+				 lblM.setEnabled(true);
+				 lblMateriale.setEnabled(false);
+				 
+				 
 			}
 		});
 		btnAlimentare.setBounds(10, 87, 90, 16);
@@ -139,26 +168,29 @@ public class ListaSpesaGrafica {
 			public void widgetSelected(SelectionEvent e) {
 				 nalimentare=true;
 				 alimentare = false;
-				 c=true;
+				 mat.setEnabled(true);
+				 g.setEnabled(false);
+				 m.setEnabled(false);
+				 a.setEnabled(false);
+				 lblA.setEnabled(false);
+				 lblG.setEnabled(false);
+				 lblM.setEnabled(false);
+				 lblMateriale.setEnabled(true);
+				 
 			}
 		});
 		btnNonAlimentare.setBounds(10, 116, 100, 16);
 		btnNonAlimentare.setText("Non alimentare");
 		
-		Button btnTesseraFedelt = new Button(shell, SWT.CHECK);
-		btnTesseraFedelt.setBackground(green);
-		btnTesseraFedelt.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				if(tf==false){
-					tf=true;
-				}else{
-					tf=false;
-				}
-			}
-		});
-		btnTesseraFedelt.setBounds(10, 152, 103, 16);
-		btnTesseraFedelt.setText("Tessera Fedelt\u00E0");
+		int dialogButton = JOptionPane.YES_NO_OPTION;
+        JOptionPane.showConfirmDialog (null, "Hai la tessera?","ATTENZIONE", dialogButton);
+        if(dialogButton == JOptionPane.YES_OPTION) {
+        	tf=true;
+        if(dialogButton == JOptionPane.NO_OPTION) {
+              tf=false;
+            }
+          }
+		
 		
 		List list = new List(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.addSelectionListener(new SelectionAdapter() {
@@ -241,28 +273,11 @@ public class ListaSpesaGrafica {
 		a = new Text(shell, SWT.BORDER);
 		a.setBounds(293, 87, 35, 21);
 		
-		Label lblG = new Label(shell, SWT.NONE);
-		lblG.setBounds(149, 88, 8, 15);
-		lblG.setText("G");
-		lblG.setBackground(green);
-		
-		Label lblM = new Label(shell, SWT.NONE);
-		lblM.setText("M");
-		lblM.setBounds(205, 88, 16, 15);
-		lblM.setBackground(green);
-		
-		Label lblA = new Label(shell, SWT.NONE);
-		lblA.setText("A");
-		lblA.setBounds(275, 88, 16, 15);
-		lblA.setBackground(green);
 		
 		mat = new Text(shell, SWT.BORDER);
 		mat.setBounds(205, 114, 76, 21);
 		
-		Label lblMateriale = new Label(shell, SWT.NONE);
-		lblMateriale.setBounds(144, 117, 55, 15);
-		lblMateriale.setText("Materiale");
-		lblMateriale.setBackground(green);
+		
 		
 		Label tot = new Label(shell, SWT.NONE);
 		tot.setBounds(310, 263, 76, 22);
