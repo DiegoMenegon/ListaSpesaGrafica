@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 
@@ -88,7 +89,11 @@ public class ListaSpesa {
     	String testo[];
     	String data[];
     	try {
-    		lettore = new BufferedReader(new FileReader("carrello.txt"));
+    		FileDialog fileDialog = new FileDialog(shell);
+			fileDialog.setFilterExtensions(new String[]{"*.txt", "*.csv", "*.*"}); //opzionale
+			String fileScelto = fileDialog.open();
+
+    		lettore = new BufferedReader(new FileReader(fileScelto));
     		riga = lettore.readLine();
     		 while (riga != null) {
     			

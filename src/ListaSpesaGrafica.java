@@ -341,6 +341,14 @@ public class ListaSpesaGrafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				list.removeAll();
+				int dialogButton = JOptionPane.showConfirmDialog (null, "Hai la tessera?","ATTENZIONE", JOptionPane.YES_NO_OPTION); 
+		        if(dialogButton == JOptionPane.NO_OPTION) {
+		        	System.out.println(dialogButton);
+		        	tf=false;
+		        }else{
+		        	System.out.println(dialogButton);
+		        	tf=true;
+		        }
 				ls=new ListaSpesa(tf);
 				tot.setText(""+ls.CalcolaSpesa());
 			}
@@ -353,6 +361,14 @@ public class ListaSpesaGrafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				list.removeAll();
+				int dialogButton = JOptionPane.showConfirmDialog (null, "Hai la tessera?","ATTENZIONE", JOptionPane.YES_NO_OPTION); 
+		        if(dialogButton == JOptionPane.NO_OPTION) {
+		        	System.out.println(dialogButton);
+		        	tf=false;
+		        }else{
+		        	System.out.println(dialogButton);
+		        	tf=true;
+		        }
 				ls=new ListaSpesa(tf);
 				ls.carica(list,shell);
 				tot.setText(""+ls.CalcolaSpesa());
