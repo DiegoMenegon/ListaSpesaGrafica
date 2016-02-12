@@ -91,7 +91,7 @@ public class ListaSpesaGrafica {
 	protected void createContents() {
 		shell = new Shell();
 		shell.setSize(702, 332);
-		shell.setText("SpesApp");
+		shell.setText("SpesApp by GretaGallina&DiegoMenegon");
 		Color green = new Color(null,218,253,218);
 		shell.setBackground(green);
 		
